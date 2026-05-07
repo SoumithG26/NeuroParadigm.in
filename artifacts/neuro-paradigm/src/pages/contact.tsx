@@ -111,9 +111,9 @@ export default function Contact() {
             <div className="space-y-8">
               <div className="space-y-4">
                 {[
-                  { icon: Mail, label: "Email", value: "contact@neuroparadigm.in" },
+                  { icon: Mail, label: "Email", value: "neuroparadigm@gmail.com" },
                   { icon: MapPin, label: "Location", value: "Mumbai, India" },
-                  { icon: Phone, label: "Phone", value: "+91 98765 43210" },
+                  // { icon: Phone, label: "Phone", value: "+91 98765 43210" },
                 ].map(({ icon: Icon, label, value }) => (
                   <div key={label} className="flex items-center gap-4" data-testid={`contact-info-${label.toLowerCase()}`}>
                     <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">

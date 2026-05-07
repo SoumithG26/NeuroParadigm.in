@@ -50,7 +50,7 @@ export default function Footer() {
             <h4 className="text-sm font-semibold text-foreground uppercase tracking-widest">Connect</h4>
             <div className="flex gap-3">
               <a
-                href="mailto:contact@neuroparadigm.in"
+                href="mailto:neuroparadigm@gmail.com"
                 data-testid="link-footer-email"
                 className="w-8 h-8 rounded-md bg-accent flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
                 aria-label="Email"
@@ -74,7 +74,7 @@ export default function Footer() {
                 <Twitter className="w-4 h-4" />
               </a>
             </div>
-            <p className="text-xs text-muted-foreground">contact@neuroparadigm.in</p>
+            <p className="text-xs text-muted-foreground">neuroparadigm@gmail.com</p>
           </div>
         </div>
 

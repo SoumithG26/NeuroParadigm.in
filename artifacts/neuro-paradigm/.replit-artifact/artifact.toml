@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Neuro Paradigm"
+version = "1.0.0"
+id = "artifacts/neuro-paradigm"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 18594
+
+[services.development]
+run = "pnpm --filter @workspace/neuro-paradigm run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/neuro-paradigm", "run", "build" ]
+publicDir = "artifacts/neuro-paradigm/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "18594"
+BASE_PATH = "/"

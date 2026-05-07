@@ -1,0 +1,43 @@
+Act as an expert frontend developer and UX/UI designer. I need you to build a complete, multi-page, non-heavyweight web application for a healthcare AI startup called "Neuro Paradigm." The overall aesthetic should be inspired by cyberparadigm.in—modern, sleek, dynamic, and professional. 
+
+**Design & Architecture Specifications:**
+* **Theme:** Subtle, clean light theme by default, but you must implement a seamless Light/Dark mode toggle in the navigation bar. Use a soothing, clinical yet modern color palette (e.g., soft blues, crisp whites, and slate grays).
+* **Performance:** The site must be lightweight and highly optimized. 
+* **Animations:** Implement advanced, silky-smooth animations (e.g., Framer Motion or GSAP) for page transitions, scroll-reveals, and micro-interactions. Avoid clunky or overly long animations.
+* **Routing:** This must be a true multi-page application with client-side routing (do not build a single-page scrolling site).
+* **Navigation:** A sticky, frosted-glass (backdrop-blur) navbar with links to: Home, About Us, Gallery, Achievements, Partners, Contact.
+
+**Page-by-Page Content & Layout Requirements:**
+
+**1. Home Page**
+* **Hero Section:** A powerful intro stating "Neuro Paradigm: AI-assisted clinical decision support for psychiatry and neurodevelopmental care." Include a subtle, abstract background animation representing neural networks or signal waves.
+* **Unique Slider/Carousel:** Build a custom, interactive slider to showcase the "Multi-Signal Fusion" concept. The slides should rotate between:
+    * *Motion:* Behavioral Signal Analysis (ASD focus).
+    * *MRI:* Biological/Structural Analysis.
+    * *Speech:* Cognitive & Thought Pattern Analysis (Schizophrenia focus).
+    * *Eye-Tracking:* Early-stage cognitive markers.
+    * *EEG:*
+* **The Problem/Impact (Scroll Reveal):** Briefly highlight the systemic burden using stats: "1 in 36 children diagnosed with ASD," "~24 Million affected by Schizophrenia," and "$1T+ in annual global economic loss."
+* **Newsletter:** A clean, modern footer/bottom-section input field for newsletter signups.
+
+**2. About Us Page**
+* **Mission:** Briefly explain the core philosophy: "Psychiatry remains one of the least instrumented domains in modern medicine. We are introducing structured signal layers—Behavioral, Biological, and Cognitive—to augment, not replace, specialist-led evaluation."
+
+**3. Gallery Page**
+* Create an interactive, masonry-style photo grid or a clean bento-box layout. 
+* Include distinct visual categories (using tabs or filters) for: "Platform UI," "Behavioral Observation (Pose Estimation)," "MRI Analysis," and "Audio Spectrograms." (Use professional placeholders or CSS abstract shapes if images are missing).
+
+**4. Achievements Page**
+* **Timeline/Milestone Layout:** Use a vertical animated timeline.
+
+**5. Partners Page**
+* A clean, trustworthy "Strategic Expansion" section featuring logo placeholders (in a continuous marquee or elegant grid).
+* Categorize them into: Hospitals, Clinics, and Academic Research Institutions. 
+* Add a brief note about expanding clinical reach through real-world medical partnerships.
+
+**6. Contact Page**
+* A sleek, minimalist contact form (Name, Email, Institution, Message).
+* Include placeholders for API integration (e.g., ready for an endpoint).
+* Display a subtle map graphic or abstract globe connecting clinical hubs.
+
+Ensure all code is production-ready, accessible, and responsive across all mobile and desktop devices.

@@ -1,4 +1,5 @@
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
+import { Link } from "wouter";
 import { Building2, Stethoscope, GraduationCap, ArrowRight } from "lucide-react";
 
 const partnerCategories = [
@@ -49,13 +50,11 @@ const marqueeItems = [
   "Apollo Neurology",
   "Fortis Brain & Spine",
   "Total Solutions Rehabilitation Society",
+  "Tapadia Diagnostics Centre",
   "IIT Bombay AI Lab",
   "AIIMS Neurology",
   "NIMHANS Research",
-  "NeuroPath Child Centre",
-  "Synapse Psychiatry",
   "Kokilaben Hospital",
-  "ClearMind Institute",
   "BITS Pilani Bioinformatics",
 ];
 
@@ -74,11 +73,11 @@ function Marquee() {
   );
 }
 
-const container = {
+const container: Variants = {
   hidden: { opacity: 0 },
   show: { opacity: 1, transition: { staggerChildren: 0.15 } },
 };
-const item = {
+const item: Variants = {
   hidden: { opacity: 0, y: 30 },
   show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: "easeOut" } },
 };
@@ -179,14 +178,14 @@ export default function Partners() {
             <p className="text-muted-foreground mb-8">
               We are actively seeking clinical and academic collaborators to expand our multicenter validation network.
             </p>
-            <a
+            <Link
               href="/contact"
               data-testid="button-partner-contact"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity"
             >
               Get in Touch
               <ArrowRight className="w-4 h-4" />
-            </a>
+            </Link>
           </motion.div>
         </div>
       </section>

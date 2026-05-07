@@ -24,10 +24,8 @@ const partnerCategories = [
     border: "border-teal-500/20",
     bg: "from-teal-500/5 to-transparent",
     partners: [
-      { name: "MindBridge Clinic", location: "Bangalore, India" },
-      { name: "Synapse Psychiatry", location: "Pune, India" },
-      { name: "NeuroPath Child Centre", location: "Chennai, India" },
-      { name: "ClearMind Institute", location: "Kolkata, India" },
+      { name: "Total Solutions Rehabilitation Society", location: "Hyderabad, India" },
+      { name: "Tapadia Diagnostics Centre", location: "Hyderabad, India" },
     ],
   },
   {
@@ -50,7 +48,7 @@ const marqueeItems = [
   "Sunrise Neuro Institute",
   "Apollo Neurology",
   "Fortis Brain & Spine",
-  "MindBridge Clinic",
+  "Total Solutions Rehabilitation Society",
   "IIT Bombay AI Lab",
   "AIIMS Neurology",
   "NIMHANS Research",

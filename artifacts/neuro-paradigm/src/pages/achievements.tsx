@@ -2,78 +2,79 @@ import { motion } from "framer-motion";
 import { CheckCircle2, FlaskConical, FileText, Handshake, ShieldCheck, Users, Rocket } from "lucide-react";
 
 const milestones = [
+
   {
-    date: "Q1 2023",
-    icon: Rocket,
-    title: "Research Inception",
-    description:
-      "Foundational research initiated at the intersection of clinical neuroscience and machine learning. Core signal processing pipeline scoped across behavioral, biological, and cognitive domains.",
-    color: "text-sky-500",
-    bg: "bg-sky-500/10 border-sky-500/20",
-  },
-  {
-    date: "Q3 2023",
-    icon: FlaskConical,
-    title: "Prototype: Multi-Signal Fusion Pipeline",
-    description:
-      "First working prototype developed, integrating pose estimation, EEG artifact rejection, and speech prosody analysis into a unified signal fusion framework. Internal testing demonstrated cross-modal correlations.",
-    color: "text-blue-500",
-    bg: "bg-blue-500/10 border-blue-500/20",
-  },
-  {
-    date: "Q4 2023",
-    icon: ShieldCheck,
-    title: "IRB Approval — Pilot Study",
-    description:
-      "Institutional Review Board approval granted for a prospective pilot study at a partner psychiatric facility. Study protocol covers ASD screening and schizophrenia cognitive profiling.",
-    color: "text-violet-500",
-    bg: "bg-violet-500/10 border-violet-500/20",
-  },
-  {
-    date: "Q1 2024",
+    date: "2026 March",
     icon: Handshake,
-    title: "MoU — Academic Institution",
+    title: "MoU with Psychiatrist",
     description:
-      "Memorandum of Understanding signed with a leading neuroscience research institute. Partnership enables access to annotated clinical datasets and collaborative model development.",
+      "Memorandum of Understanding signed with Dr.Abhimanyu. Partnership enables access to annotated clinical datasets and collaborative model development.",
     color: "text-teal-500",
     bg: "bg-teal-500/10 border-teal-500/20",
   },
-  {
-    date: "Q2 2024",
-    icon: FileText,
-    title: "First Clinical Pilot Deployment",
-    description:
-      "Platform deployed in a real clinical setting for the first time. Fifty patients enrolled across two diagnostic categories. Clinician feedback integrated into report generation and UI workflows.",
-    color: "text-emerald-500",
-    bg: "bg-emerald-500/10 border-emerald-500/20",
-  },
-  {
-    date: "Q3 2024",
-    icon: FileText,
-    title: "Research Publication — Neural Biomarkers",
-    description:
-      "Peer-reviewed paper submitted on multi-modal neural biomarker extraction in paediatric ASD. Results indicate statistically significant differentiation from neurotypical cohorts across all three signal layers.",
-    color: "text-amber-500",
-    bg: "bg-amber-500/10 border-amber-500/20",
-  },
-  {
-    date: "Q4 2024",
-    icon: Users,
-    title: "Team Expansion & Seed Funding",
-    description:
-      "Core team expanded to include clinical psychologists, neuroimaging specialists, and ML engineers. Seed funding secured to accelerate multicenter study enrollment and platform development.",
-    color: "text-primary",
-    bg: "bg-primary/10 border-primary/20",
-  },
-  {
-    date: "2025 →",
-    icon: CheckCircle2,
-    title: "Multicenter Study & Regulatory Pathway",
-    description:
-      "Scaling clinical validation across multiple hospital systems. Engaging with regulatory consultants to define a pathway toward CE/FDA clearance for AI-assisted psychiatric decision support.",
-    color: "text-cyan-500",
-    bg: "bg-cyan-500/10 border-cyan-500/20",
-  },
+  /*  {
+      date: "Q1 2023",
+      icon: Rocket,
+      title: "Research Inception",
+      description:
+        "Foundational research initiated at the intersection of clinical neuroscience and machine learning. Core signal processing pipeline scoped across behavioral, biological, and cognitive domains.",
+      color: "text-sky-500",
+      bg: "bg-sky-500/10 border-sky-500/20",
+    },
+    {
+      date: "Q3 2023",
+      icon: FlaskConical,
+      title: "Prototype: Multi-Signal Fusion Pipeline",
+      description:
+        "First working prototype developed, integrating pose estimation, EEG artifact rejection, and speech prosody analysis into a unified signal fusion framework. Internal testing demonstrated cross-modal correlations.",
+      color: "text-blue-500",
+      bg: "bg-blue-500/10 border-blue-500/20",
+    },
+    {
+      date: "Q4 2023",
+      icon: ShieldCheck,
+      title: "IRB Approval — Pilot Study",
+      description:
+        "Institutional Review Board approval granted for a prospective pilot study at a partner psychiatric facility. Study protocol covers ASD screening and schizophrenia cognitive profiling.",
+      color: "text-violet-500",
+      bg: "bg-violet-500/10 border-violet-500/20",
+    },
+    {
+      date: "Q2 2024",
+      icon: FileText,
+      title: "First Clinical Pilot Deployment",
+      description:
+        "Platform deployed in a real clinical setting for the first time. Fifty patients enrolled across two diagnostic categories. Clinician feedback integrated into report generation and UI workflows.",
+      color: "text-emerald-500",
+      bg: "bg-emerald-500/10 border-emerald-500/20",
+    },
+    {
+      date: "Q3 2024",
+      icon: FileText,
+      title: "Research Publication — Neural Biomarkers",
+      description:
+        "Peer-reviewed paper submitted on multi-modal neural biomarker extraction in paediatric ASD. Results indicate statistically significant differentiation from neurotypical cohorts across all three signal layers.",
+      color: "text-amber-500",
+      bg: "bg-amber-500/10 border-amber-500/20",
+    },
+    {
+      date: "Q4 2024",
+      icon: Users,
+      title: "Team Expansion & Seed Funding",
+      description:
+        "Core team expanded to include clinical psychologists, neuroimaging specialists, and ML engineers. Seed funding secured to accelerate multicenter study enrollment and platform development.",
+      color: "text-primary",
+      bg: "bg-primary/10 border-primary/20",
+    },
+    {
+      date: "2025 →",
+      icon: CheckCircle2,
+      title: "Multicenter Study & Regulatory Pathway",
+      description:
+        "Scaling clinical validation across multiple hospital systems. Engaging with regulatory consultants to define a pathway toward CE/FDA clearance for AI-assisted psychiatric decision support.",
+      color: "text-cyan-500",
+      bg: "bg-cyan-500/10 border-cyan-500/20",
+    },*/
 ];
 
 export default function Achievements() {

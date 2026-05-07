@@ -111,7 +111,7 @@ export default function Contact() {
             <div className="space-y-8">
               <div className="space-y-4">
                 {[
-                  { icon: Mail, label: "Email", value: "neuroparadigm@gmail.com" },
+                  { icon: Mail, label: "Email", value: "admin@neuroparadigm.in" },
                   { icon: MapPin, label: "Location", value: "Uppal, Hyderabad, India" },
                   // { icon: Phone, label: "Phone", value: "+91 98765 43210" },
                 ].map(({ icon: Icon, label, value }) => (

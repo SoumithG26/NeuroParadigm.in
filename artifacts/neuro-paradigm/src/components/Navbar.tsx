@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { useTheme } from "@/lib/theme";
-import { Menu, X, Moon, Sun, Brain } from "lucide-react";
+import { Menu, X, Moon, Sun } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const navLinks = [
@@ -69,19 +69,11 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" data-testid="link-logo">
               <div className="flex items-center gap-2 cursor-pointer group">
-                <div
-                  className={`w-8 h-8 rounded-lg flex items-center justify-center transition-all ${
-                    heroMode
-                      ? "bg-cyan-400/15 border border-cyan-400/30 group-hover:bg-cyan-400/25"
-                      : "bg-primary/10 border border-primary/20 group-hover:bg-primary/20"
-                  }`}
-                >
-                  <Brain
-                    className={`w-4 h-4 transition-colors ${
-                      heroMode ? "text-cyan-400" : "text-primary"
-                    }`}
-                  />
-                </div>
+                <img
+                  src="/logo.png"
+                  alt="Neuro Paradigm logo"
+                  className="w-8 h-8 rounded-lg object-contain transition-transform group-hover:scale-105"
+                />
                 <span className="font-display font-bold text-lg tracking-tight">
                   <span className={heroMode ? "text-white" : "text-foreground"}>
                     Neuro

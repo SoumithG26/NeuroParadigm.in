@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Brain, Mail, Linkedin, Twitter } from "lucide-react";
+import { Mail, Linkedin, Twitter } from "lucide-react";
 
 const links = [
   { label: "About Us", href: "/about" },
@@ -16,9 +16,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="w-7 h-7 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center">
-                <Brain className="w-3.5 h-3.5 text-primary" />
-              </div>
+              <img
+                src="/logo.png"
+                alt="Neuro Paradigm logo"
+                className="w-7 h-7 rounded-lg object-contain"
+              />
               <span className="font-display font-bold text-base">
                 <span className="text-foreground">Neuro</span>
                 <span className="text-primary"> Paradigm</span>

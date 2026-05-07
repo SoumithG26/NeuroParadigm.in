@@ -11,10 +11,7 @@ const partnerCategories = [
     border: "border-blue-500/20",
     bg: "from-blue-500/5 to-transparent",
     partners: [
-      { name: "Sunrise Neuro Institute", location: "Mumbai, India" },
-      { name: "Apollo Neurology Centre", location: "Hyderabad, India" },
-      { name: "Fortis Brain & Spine", location: "Delhi, India" },
-      { name: "Kokilaben Hospital", location: "Mumbai, India" },
+      { name: "Coming soon", location: "-" },
     ],
   },
   {
@@ -37,10 +34,7 @@ const partnerCategories = [
     border: "border-violet-500/20",
     bg: "from-violet-500/5 to-transparent",
     partners: [
-      { name: "IIT Bombay — Healthcare AI Lab", location: "Mumbai, India" },
-      { name: "AIIMS Neurology Division", location: "New Delhi, India" },
-      { name: "NIMHANS Research Centre", location: "Bangalore, India" },
-      { name: "BITS Pilani Bioinformatics", location: "Goa, India" },
+      { name: "Coming soon", location: "-" },
     ],
   },
 ];

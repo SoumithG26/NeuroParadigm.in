@@ -53,16 +53,14 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* Glass panel when scrolled */}
-      <motion.div
-        animate={
+      {/* Glass panel */}
+      <div
+        className={`relative transition-all duration-300 ${
           scrolled
-            ? { backdropFilter: "blur(20px)", backgroundColor: "rgba(var(--background-rgb, 248 250 252) / 0.80)" }
-            : { backdropFilter: "blur(0px)", backgroundColor: "transparent" }
-        }
-        transition={{ duration: 0.25 }}
-        className={`relative transition-shadow duration-300 ${
-          scrolled ? "border-b border-border/50 shadow-sm" : ""
+            ? "bg-white/85 dark:bg-slate-950/90 backdrop-blur-xl border-b border-slate-200/60 dark:border-white/[0.08] shadow-sm dark:shadow-black/30"
+            : heroMode
+            ? "bg-transparent"
+            : "bg-white/0 dark:bg-slate-950/60 dark:backdrop-blur-md dark:border-b dark:border-white/[0.06]"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -167,7 +165,7 @@ export default function Navbar() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Mobile menu */}
       <AnimatePresence>

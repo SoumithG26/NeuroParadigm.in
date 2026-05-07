@@ -40,16 +40,8 @@ const partnerCategories = [
 ];
 
 const marqueeItems = [
-  "Sunrise Neuro Institute",
-  "Apollo Neurology",
-  "Fortis Brain & Spine",
   "Total Solutions Rehabilitation Society",
   "Tapadia Diagnostics Centre",
-  "IIT Bombay AI Lab",
-  "AIIMS Neurology",
-  "NIMHANS Research",
-  "Kokilaben Hospital",
-  "BITS Pilani Bioinformatics",
 ];
 
 function Marquee() {

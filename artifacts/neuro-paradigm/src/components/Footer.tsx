@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Mail, Linkedin, Twitter } from "lucide-react";
+import { Mail, Linkedin, Instagram } from "lucide-react";
 
 const links = [
   { label: "About Us", href: "/about" },
@@ -66,12 +66,13 @@ export default function Footer() {
                 <Linkedin className="w-4 h-4" />
               </a>
               <a
-                href="#"
-                data-testid="link-footer-twitter"
+                href="https://www.instagram.com/neuroparadigm/"
+                target="_blank"
+                data-testid="link-footer-instagram"
                 className="w-8 h-8 rounded-md bg-accent flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"
-                aria-label="Twitter"
+                aria-label="Instagram"
               >
-                <Twitter className="w-4 h-4" />
+                <Instagram className="w-4 h-4" />
               </a>
             </div>
             <p className="text-xs text-muted-foreground">neuroparadigm@gmail.com</p>

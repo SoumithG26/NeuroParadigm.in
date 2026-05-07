@@ -4,11 +4,14 @@ import { CheckCircle2, FlaskConical, FileText, Handshake, ShieldCheck, Users, Ro
 const milestones = [
 
   {
-    date: "2026 March",
+    date: "2026",
     icon: Handshake,
-    title: "MoU with Psychiatrist",
+    title: "Coming Soon",
+    // title: "MoU with Psychiatrist",
     description:
-      "Memorandum of Understanding signed with Dr.Abhimanyu. Partnership enables access to annotated clinical datasets and collaborative model development.",
+      "",
+    // description:
+    //   "Memorandum of Understanding signed with Dr.Abhimanyu. Partnership enables access to annotated clinical datasets and collaborative model development.",
     color: "text-teal-500",
     bg: "bg-teal-500/10 border-teal-500/20",
   },

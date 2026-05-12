@@ -187,6 +187,7 @@ This regenerates:
 ### Static Frontend (Cloudflare Pages, Render, Vercel, etc.)
 
 **Cloudflare Pages Configuration:**
+- **Framework preset:** `None`
 - **Build command:** `pnpm --filter @workspace/neuro-paradigm run build`
 - **Build output directory:** `artifacts/neuro-paradigm/dist/public`
 

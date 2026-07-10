@@ -13,7 +13,7 @@ export default function Footer() {
   return (
     <footer className="bg-card border-t border-border/50 mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div className="space-y-4">
             <div className="flex items-center gap-2">
               <img
@@ -77,6 +77,40 @@ export default function Footer() {
               </a>
             </div>
             <p className="text-xs text-muted-foreground">admin@neuroparadigm.in</p>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="text-sm font-semibold text-foreground uppercase tracking-widest">Address</h4>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Teleparadigm Towers,<br />
+              SY No 32/A & 32/E2,<br />
+              Near NGIT College,<br />
+              Uppal, Hyderabad,<br />
+              Telangana – 500088
+            </p>
+            <div
+              className="overflow-hidden border border-border/50"
+              style={{ borderRadius: "8px" }}
+            >
+              <iframe
+                title="Neuro Paradigm Office Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1903.2!2d78.6214986!3d17.3941203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9fcca00e1c7f%3A0xf4e90cf1634579fa!2sTeleparadigm%20Towers!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                width="100%"
+                height="180"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+            <a
+              href="https://maps.app.goo.gl/fimKfCuwB3XYnK8F7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors font-medium"
+            >
+              Open in Google Maps ↗
+            </a>
           </div>
         </div>
 

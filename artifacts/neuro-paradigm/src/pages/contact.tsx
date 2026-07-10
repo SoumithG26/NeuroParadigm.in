@@ -1,85 +1,72 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Send, CheckCircle2, Mail, MapPin, Phone } from "lucide-react";
+import { Send, Mail, MapPin, ChevronDown } from "lucide-react";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
+const AFFILIATION_OPTIONS = [
+  "University",
+  "Hospital / Clinic",
+  "Company",
+  "NGO / Non-Profit",
+  "Independent Researcher",
+  "Student",
+  "Other",
+] as const;
+
+const NEURO_EMAIL = "admin@neuroparadigm.in";
+
 const schema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Please enter a valid email address"),
-  institution: z.string().min(2, "Institution name is required"),
+  affiliation: z.string().min(1, "Please select your affiliation"),
+  affiliationOther: z.string().optional(),
   message: z.string().min(10, "Message must be at least 10 characters"),
-});
+}).refine(
+  (data) => data.affiliation !== "Other" || (data.affiliationOther && data.affiliationOther.trim().length >= 2),
+  { message: "Please specify your affiliation", path: ["affiliationOther"] }
+);
 
 type FormValues = z.infer<typeof schema>;
 
-function GlobeGraphic() {
-  return (
-    <svg viewBox="0 0 300 300" className="w-full h-full opacity-60">
-      <defs>
-        <radialGradient id="globeGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="hsl(215, 30%, 40%)" stopOpacity="0.15" />
-          <stop offset="100%" stopColor="hsl(215, 30%, 40%)" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <circle cx="150" cy="150" r="120" fill="url(#globeGrad)" />
-      <circle cx="150" cy="150" r="120" fill="none" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.2" />
-      {[30, 60, 90, 120].map((r, i) => (
-        <ellipse key={i} cx="150" cy="150" rx={r} ry={r * 0.4} fill="none" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.15" />
-      ))}
-      {[0, 30, 60, 90, 120, 150].map((a, i) => {
-        const rad = (a * Math.PI) / 180;
-        const x2 = 150 + 120 * Math.cos(rad);
-        const y2 = 150 + 120 * Math.sin(rad);
-        const x1 = 150 - 120 * Math.cos(rad);
-        const y1 = 150 - 120 * Math.sin(rad);
-        return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.1" />;
-      })}
-      {[
-        { cx: 180, cy: 110, r: 3, label: "Mumbai" },
-        { cx: 240, cy: 130, r: 2.5, label: "Delhi" },
-        { cx: 160, cy: 155, r: 3, label: "Bangalore" },
-        { cx: 90, cy: 100, r: 2, label: "London" },
-        { cx: 60, cy: 120, r: 2, label: "Boston" },
-        { cx: 200, cy: 180, r: 2, label: "Chennai" },
-      ].map((node) => (
-        <g key={node.label}>
-          <circle cx={node.cx} cy={node.cy} r={node.r} fill="currentColor" fillOpacity="0.6" />
-          <circle cx={node.cx} cy={node.cy} r={node.r + 3} fill="none" stroke="currentColor" strokeWidth="0.5" strokeOpacity="0.3" />
-        </g>
-      ))}
-      {[
-        [180, 110, 90, 100],
-        [180, 110, 240, 130],
-        [180, 110, 160, 155],
-        [160, 155, 200, 180],
-        [90, 100, 60, 120],
-      ].map(([x1, y1, x2, y2], i) => (
-        <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} stroke="currentColor" strokeWidth="0.6" strokeOpacity="0.2" strokeDasharray="3,4" />
-      ))}
-    </svg>
-  );
-}
-
 export default function Contact() {
-  const [submitted, setSubmitted] = useState(false);
-  const [submitting, setSubmitting] = useState(false);
-
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { name: "", email: "", institution: "", message: "" },
+    defaultValues: { name: "", email: "", affiliation: "", affiliationOther: "", message: "" },
   });
 
-  function onSubmit(_values: FormValues) {
-    setSubmitting(true);
-    setTimeout(() => {
-      setSubmitting(false);
-      setSubmitted(true);
-    }, 1200);
+  const selectedAffiliation = form.watch("affiliation");
+
+  function onSubmit(values: FormValues) {
+    const affLabel = values.affiliation === "Other"
+      ? values.affiliationOther || "Other"
+      : values.affiliation;
+
+    const subject = encodeURIComponent(
+      `Inquiry from ${values.name} — Neuro Paradigm`
+    );
+
+    const body = encodeURIComponent(
+      `Hi Neuro Paradigm,\n\n` +
+      `I'd like to reach out regarding the following:\n\n` +
+      `────────────────────────\n` +
+      `Name: ${values.name}\n` +
+      `Email: ${values.email}\n` +
+      `Affiliation: ${affLabel}\n` +
+      `────────────────────────\n\n` +
+      `Message:\n${values.message}\n\n` +
+      `────────────────────────\n` +
+      `Looking forward to hearing from you.\n\n` +
+      `Best regards,\n${values.name}`
+    );
+
+    window.open(
+      `https://mail.google.com/mail/?view=cm&fs=1&to=${NEURO_EMAIL}&su=${subject}&body=${body}`,
+      "_blank"
+    );
   }
 
   return (
@@ -111,9 +98,8 @@ export default function Contact() {
             <div className="space-y-8">
               <div className="space-y-4">
                 {[
-                  { icon: Mail, label: "Email", value: "admin@neuroparadigm.in" },
-                  { icon: MapPin, label: "Location", value: "Uppal, Hyderabad, India" },
-                  // { icon: Phone, label: "Phone", value: "+91 98765 43210" },
+                  { icon: Mail, label: "Email", value: NEURO_EMAIL },
+                  { icon: MapPin, label: "Location", value: "Teleparadigm Towers, SY No 32/A & 32/E2, Near NGIT College, Uppal, Hyderabad, Telangana – 500088" },
                 ].map(({ icon: Icon, label, value }) => (
                   <div key={label} className="flex items-center gap-4" data-testid={`contact-info-${label.toLowerCase()}`}>
                     <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center flex-shrink-0">
@@ -127,8 +113,30 @@ export default function Contact() {
                 ))}
               </div>
 
-              <div className="w-full aspect-square max-w-sm mx-auto lg:mx-0 text-primary/40">
-                <GlobeGraphic />
+              <div className="space-y-3">
+                <div
+                  className="overflow-hidden border border-border/50"
+                  style={{ borderRadius: "8px" }}
+                >
+                  <iframe
+                    title="Neuro Paradigm Office Location"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1903.2!2d78.6214986!3d17.3941203!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb9fcca00e1c7f%3A0xf4e90cf1634579fa!2sTeleparadigm%20Towers!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                    width="100%"
+                    height="250"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+                <a
+                  href="https://maps.app.goo.gl/fimKfCuwB3XYnK8F7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm text-primary hover:text-primary/80 transition-colors font-medium"
+                >
+                  Open in Google Maps ↗
+                </a>
               </div>
             </div>
           </motion.div>
@@ -138,69 +146,19 @@ export default function Contact() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            {submitted ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="h-full flex flex-col items-center justify-center text-center gap-6 p-12 rounded-2xl border border-border/50 bg-card"
-                data-testid="contact-success"
-              >
-                <CheckCircle2 className="w-16 h-16 text-primary" />
-                <div>
-                  <h3 className="font-display text-2xl font-bold text-foreground mb-2">Message Sent</h3>
-                  <p className="text-muted-foreground">
-                    Thank you for reaching out. We'll get back to you within 1-2 business days.
-                  </p>
-                </div>
-                <button
-                  data-testid="button-send-another"
-                  onClick={() => { setSubmitted(false); form.reset(); }}
-                  className="px-4 py-2 rounded-lg text-sm text-primary border border-primary/30 hover:bg-primary/10 transition-colors"
-                >
-                  Send another message
-                </button>
-              </motion.div>
-            ) : (
-              <div className="p-8 rounded-2xl border border-border/50 bg-card">
-                <h2 className="font-display text-xl font-bold text-foreground mb-6">Send a Message</h2>
-                <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5" data-testid="form-contact">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <FormField
-                        control={form.control}
-                        name="name"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Full Name</FormLabel>
-                            <FormControl>
-                              <Input data-testid="input-name" placeholder="Dr. Jane Smith" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                      <FormField
-                        control={form.control}
-                        name="email"
-                        render={({ field }) => (
-                          <FormItem>
-                            <FormLabel>Email Address</FormLabel>
-                            <FormControl>
-                              <Input data-testid="input-email" type="email" placeholder="jane@hospital.org" {...field} />
-                            </FormControl>
-                            <FormMessage />
-                          </FormItem>
-                        )}
-                      />
-                    </div>
+            <div className="p-8 rounded-2xl border border-border/50 bg-card">
+              <h2 className="font-display text-xl font-bold text-foreground mb-6">Send a Message</h2>
+              <Form {...form}>
+                <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5" data-testid="form-contact">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <FormField
                       control={form.control}
-                      name="institution"
+                      name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Institution</FormLabel>
+                          <FormLabel>Full Name</FormLabel>
                           <FormControl>
-                            <Input data-testid="input-institution" placeholder="Apollo Neurology Centre" {...field} />
+                            <Input data-testid="input-name" placeholder="Dr. Jane Smith" {...field} />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
@@ -208,15 +166,58 @@ export default function Contact() {
                     />
                     <FormField
                       control={form.control}
-                      name="message"
+                      name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>Message</FormLabel>
+                          <FormLabel>Email Address</FormLabel>
                           <FormControl>
-                            <Textarea
-                              data-testid="input-message"
-                              placeholder="Tell us about your clinical setting, research interests, or partnership inquiry..."
-                              className="min-h-[140px] resize-none"
+                            <Input data-testid="input-email" type="email" placeholder="jane@example.com" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
+                  {/* Affiliation dropdown */}
+                  <FormField
+                    control={form.control}
+                    name="affiliation"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Affiliation</FormLabel>
+                        <FormControl>
+                          <div className="relative">
+                            <select
+                              data-testid="select-affiliation"
+                              {...field}
+                              className="w-full appearance-none rounded-md border border-input bg-background px-3 py-2 pr-10 text-sm text-foreground ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 cursor-pointer"
+                            >
+                              <option value="" disabled>Select your affiliation</option>
+                              {AFFILIATION_OPTIONS.map((opt) => (
+                                <option key={opt} value={opt}>{opt}</option>
+                              ))}
+                            </select>
+                            <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+                          </div>
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  {/* "Other" custom input — shown only when "Other" is selected */}
+                  {selectedAffiliation === "Other" && (
+                    <FormField
+                      control={form.control}
+                      name="affiliationOther"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Please specify</FormLabel>
+                          <FormControl>
+                            <Input
+                              data-testid="input-affiliation-other"
+                              placeholder="e.g., Freelance Consultant, Government Body..."
                               {...field}
                             />
                           </FormControl>
@@ -224,28 +225,42 @@ export default function Contact() {
                         </FormItem>
                       )}
                     />
-                    <button
-                      type="submit"
-                      data-testid="button-submit-contact"
-                      disabled={submitting}
-                      className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 disabled:opacity-60 transition-opacity"
-                    >
-                      {submitting ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                          Sending...
-                        </>
-                      ) : (
-                        <>
-                          <Send className="w-4 h-4" />
-                          Send Message
-                        </>
-                      )}
-                    </button>
-                  </form>
-                </Form>
-              </div>
-            )}
+                  )}
+
+                  <FormField
+                    control={form.control}
+                    name="message"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Message</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            data-testid="input-message"
+                            placeholder="Tell us about your research interests, partnership inquiry, or anything else..."
+                            className="min-h-[140px] resize-none"
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <button
+                    type="submit"
+                    data-testid="button-submit-contact"
+                    className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground text-sm font-semibold hover:opacity-90 transition-opacity"
+                  >
+                    <Send className="w-4 h-4" />
+                    Send via Gmail
+                  </button>
+
+                  <p className="text-xs text-muted-foreground text-center">
+                    Clicking "Send via Gmail" will open Gmail with your message pre-filled.
+                  </p>
+                </form>
+              </Form>
+            </div>
           </motion.div>
         </div>
       </section>

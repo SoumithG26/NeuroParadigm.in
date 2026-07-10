@@ -58,7 +58,7 @@ export default function Footer() {
                 <Mail className="w-4 h-4" />
               </a>
               <a
-                href="https://www.linkedin.com/in/neuro-paradigm/"
+                href="https://www.linkedin.com/company/neuroparadigmpvtltd/"
                 target="_blank"
                 data-testid="link-footer-linkedin"
                 className="w-8 h-8 rounded-md bg-accent flex items-center justify-center text-muted-foreground hover:text-primary hover:bg-primary/10 transition-colors"

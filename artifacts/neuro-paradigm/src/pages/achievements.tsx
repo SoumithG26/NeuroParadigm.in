@@ -51,8 +51,6 @@ const milestones: Milestone[] = [
     color: "text-teal-500",
     bg: "bg-teal-500/10 border-teal-500/20",
     attachments: [
-      { type: "image", src: "/achievements/NeuroMoU.jpeg", label: "Neuro Paradigm MoU" },
-      { type: "image", src: "/achievements/TSRC_MoU.jpeg", label: "TSRS MoU" },
     ],
   },
   /*  {

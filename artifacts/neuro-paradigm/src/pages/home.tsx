@@ -16,6 +16,7 @@ const signals = [
     color: "from-sky-500 to-blue-600",
     border: "border-sky-500/30",
     glow: "shadow-sky-500/20",
+    image: "/images/layer_motion.png",
   },
   {
     id: "mri",
@@ -29,6 +30,7 @@ const signals = [
     color: "from-violet-500 to-purple-600",
     border: "border-violet-500/30",
     glow: "shadow-violet-500/20",
+    image: "/images/layer_mri.png",
   },
   {
     id: "speech",
@@ -42,6 +44,7 @@ const signals = [
     color: "from-teal-500 to-emerald-600",
     border: "border-teal-500/30",
     glow: "shadow-teal-500/20",
+    image: "/images/layer_speech.png",
   },
   {
     id: "eyetracking",
@@ -55,6 +58,7 @@ const signals = [
     color: "from-amber-500 to-orange-600",
     border: "border-amber-500/30",
     glow: "shadow-amber-500/20",
+    image: "/images/layer_eyetracking.png",
   },
   {
     id: "eeg",
@@ -68,6 +72,7 @@ const signals = [
     color: "from-cyan-500 to-blue-500",
     border: "border-cyan-500/30",
     glow: "shadow-cyan-500/20",
+    image: "/images/layer_eeg.png",
   },
 ];
 
@@ -377,30 +382,44 @@ export default function Home() {
                   </div>
 
                   <div className="flex items-center justify-center">
-                    <div className={`w-64 h-64 rounded-2xl border ${signal.border} bg-card/50 flex items-center justify-center relative overflow-hidden`}>
-                      <div className={`absolute inset-0 opacity-5 bg-gradient-to-br ${signal.color}`} />
-                      <motion.div
-                        animate={{ scale: [1, 1.08, 1], opacity: [0.6, 1, 0.6] }}
-                        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                      >
-                        <SignalIcon className={`w-24 h-24 bg-gradient-to-br ${signal.color} bg-clip-text`} style={{ opacity: 0.4 }} />
-                      </motion.div>
-                      <svg className="absolute inset-0 w-full h-full" viewBox="0 0 256 256">
-                        {[40, 70, 100].map((r, i) => (
-                          <motion.circle
-                            key={i}
-                            cx="128" cy="128" r={r}
-                            fill="none"
-                            strokeWidth="0.5"
-                            stroke="currentColor"
-                            strokeOpacity={0.15 - i * 0.04}
-                            strokeDasharray="4 6"
-                            animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
-                            transition={{ duration: 12 + i * 4, repeat: Infinity, ease: "linear" }}
-                            style={{ transformOrigin: "128px 128px" }}
+                    <div className={`w-64 h-64 sm:w-80 sm:h-80 rounded-2xl border ${signal.border} ${!signal.image ? 'bg-card/50' : ''} flex items-center justify-center relative overflow-hidden group shadow-inner shadow-black/20`}>
+                      {signal.image ? (
+                        <>
+                          <img 
+                            src={signal.image} 
+                            alt={signal.label} 
+                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                           />
-                        ))}
-                      </svg>
+                          <div className={`absolute inset-0 opacity-40 bg-gradient-to-br ${signal.color} mix-blend-overlay`} />
+                          <div className="absolute inset-0 bg-background/20 transition-colors duration-500 group-hover:bg-transparent" />
+                        </>
+                      ) : (
+                        <>
+                          <div className={`absolute inset-0 opacity-5 bg-gradient-to-br ${signal.color}`} />
+                          <motion.div
+                            animate={{ scale: [1, 1.08, 1], opacity: [0.6, 1, 0.6] }}
+                            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                          >
+                            <SignalIcon className={`w-24 h-24 bg-gradient-to-br ${signal.color} bg-clip-text`} style={{ opacity: 0.4 }} />
+                          </motion.div>
+                          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 256 256">
+                            {[40, 70, 100].map((r, i) => (
+                              <motion.circle
+                                key={i}
+                                cx="128" cy="128" r={r}
+                                fill="none"
+                                strokeWidth="0.5"
+                                stroke="currentColor"
+                                strokeOpacity={0.15 - i * 0.04}
+                                strokeDasharray="4 6"
+                                animate={{ rotate: i % 2 === 0 ? 360 : -360 }}
+                                transition={{ duration: 12 + i * 4, repeat: Infinity, ease: "linear" }}
+                                style={{ transformOrigin: "128px 128px" }}
+                              />
+                            ))}
+                          </svg>
+                        </>
+                      )}
                     </div>
                   </div>
                 </div>
